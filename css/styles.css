@@ -6,25 +6,23 @@
 
 .navbar {
     display: flex;
-    background-color: grey;
+    background-color: #e8d2c7;
+    justify-content: space-between;
 }
 
 .navbar a{
     text-decoration: none;
     display: block;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
     font-weight: bold;
     font-size: large;
-    color: aliceblue;
+    color: #6b4940;
+    padding: 2.5rem;
 }
 
 .navbar a:hover{
-    color: aqua;
+    color: #e8d2c7;
     transition-duration: 0.3s;
-    background-color: aliceblue;
+    background-color: #6b4940;
 }
 
 .navbar li{
@@ -33,11 +31,15 @@
 
 .navbar ul{
     display: flex;
-    justify-content: center;
-    background-position-x: absolute;
-    transform: translateX(40%);
+    gap: 3rem;
+    margin-right: 2rem;
 }
 
 .logo {
-    padding: 2rem;
+    margin-left: 2rem;
+    
+}
+
+.nav-elements {
+
 }
