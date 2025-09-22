@@ -1,30 +1,673 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Events Decor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-        
-        <!--Navbar starts here-->
-        <div class="navbar">
-            <div class="logo">
-                <img src="/assets/logo (Custom).png" alt="">
-            </div>
-            <div class="nav-elements">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">About us</a></li>
-                </ul>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #6b4940;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(107, 73, 64, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #6b4940;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #6b4940;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e8d2c7;
+        }
+
+        .cta-button {
+            background: #6b4940;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #5a3d36;
+            transform: translateY(-2px);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: #6b4940;
+            border: 2px solid #6b4940;
+        }
+
+        .cta-button.secondary:hover {
+            background: #6b4940;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(107, 73, 64, 0.4), rgba(107, 73, 64, 0.4)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23e8d2c7" width="1200" height="800"/><circle fill="%236b4940" opacity="0.1" cx="300" cy="200" r="150"/><circle fill="%236b4940" opacity="0.1" cx="900" cy="600" r="200"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Event Types Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #6b4940;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            color: #6b4940;
+            opacity: 0.8;
+        }
+
+        /* Event Portfolio Combined Section */
+        .event-portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .event-portfolio-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(107, 73, 64, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .event-portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(107, 73, 64, 0.2);
+        }
+
+        .event-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .wedding-bg {
+            background: linear-gradient(135deg, #e8d2c7, #d4b8a8, #6b4940);
+        }
+
+        .corporate-bg {
+            background: linear-gradient(135deg, #6b4940, #5a3d36, #3a251f);
+        }
+
+        .birthday-bg {
+            background: linear-gradient(135deg, #e8d2c7, #f4e6dc, #e8d2c7);
+        }
+
+        .babyshower-bg {
+            background: linear-gradient(135deg, #f0e6e0, #e8d2c7, #dcc5b5);
+        }
+
+        .holiday-bg {
+            background: linear-gradient(135deg, #6b4940, #8b6355, #a17865);
+        }
+
+        .custom-bg {
+            background: linear-gradient(135deg, #e8d2c7, #6b4940, #e8d2c7);
+        }
+
+        .placeholder-text {
+            background: rgba(107, 73, 64, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .event-overlay {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .event-overlay .event-icon {
+            font-size: 1.5rem;
+            margin: 0;
+            width: auto;
+            height: auto;
+            background: none;
+            color: #6b4940;
+        }
+
+        .event-content {
+            padding: 30px;
+        }
+
+        .event-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #6b4940;
+        }
+
+        .event-content p {
+            color: #6b4940;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .event-features {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .event-features span {
+            color: #6b4940;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .service-icon {
+            width: 100px;
+            height: 100px;
+            background: #6b4940;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        .service-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #6b4940;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background: linear-gradient(135deg, #6b4940, #5a3d36);
+            color: #fff;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .submit-button {
+            background: #e8d2c7;
+            color: #6b4940;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #6b4940;
+            color: #e8d2c7;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Elegant Events</a>
+            <ul class="nav-links">
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Quote</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Creating Unforgettable Moments</h1>
+            <p>Transform your special occasions with our expert event decor and design services. From intimate gatherings to grand celebrations, we bring your vision to life.</p>
+            <div class="hero-buttons">
+                <a href="#portfolio" class="cta-button">View Our Work</a>
+                <a href="#contact" class="cta-button secondary">Free Consultation</a>
             </div>
         </div>
-        
-        <script src="" async defer></script>
-    </body>
+    </section>
+
+    <!-- Portfolio & Event Types Combined -->
+    <section class="section" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Event Specialties</h2>
+            <p class="section-subtitle">See how we create stunning decor for every type of celebration</p>
+            
+            <div class="event-portfolio-grid">
+                <div class="event-portfolio-card">
+                    <div class="event-image">
+                        <div class="image-placeholder wedding-bg">
+                            <span class="placeholder-text">Wedding Decor Sample</span>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-icon">💒</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Weddings</h3>
+                        <p>Create the perfect romantic atmosphere with elegant florals, ambient lighting, and personalized details. From intimate ceremonies to grand receptions, we design spaces that reflect your love story.</p>
+                        <div class="event-features">
+                            <span>• Ceremony Backdrops</span>
+                            <span>• Reception Centerpieces</span>
+                            <span>• Bridal Party Styling</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-portfolio-card">
+                    <div class="event-image">
+                        <div class="image-placeholder corporate-bg">
+                            <span class="placeholder-text">Corporate Event Sample</span>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-icon">🏢</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Corporate Events</h3>
+                        <p>Impress clients and colleagues with sophisticated, professional setups that reinforce your brand identity. From product launches to annual galas, we create environments that inspire business success.</p>
+                        <div class="event-features">
+                            <span>• Brand Integration</span>
+                            <span>• Stage Design</span>
+                            <span>• Networking Areas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-portfolio-card">
+                    <div class="event-image">
+                        <div class="image-placeholder birthday-bg">
+                            <span class="placeholder-text">Birthday Party Sample</span>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-icon">🎂</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Birthday Parties</h3>
+                        <p>Bring joy and wonder to birthday celebrations with vibrant colors, themed decorations, and interactive elements. Whether it's a child's magical party or an elegant adult celebration, we make it unforgettable.</p>
+                        <div class="event-features">
+                            <span>• Themed Decorations</span>
+                            <span>• Balloon Installations</span>
+                            <span>• Photo Backdrops</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-portfolio-card">
+                    <div class="event-image">
+                        <div class="image-placeholder babyshower-bg">
+                            <span class="placeholder-text">Baby Shower Sample</span>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-icon">👶</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Baby Showers</h3>
+                        <p>Welcome new arrivals with soft, charming decorations that celebrate this precious milestone. Sweet pastels, delicate florals, and thoughtful details create the perfect atmosphere for expecting parents.</p>
+                        <div class="event-features">
+                            <span>• Pastel Color Schemes</span>
+                            <span>• Floral Arrangements</span>
+                            <span>• Gift Table Styling</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-portfolio-card">
+                    <div class="event-image">
+                        <div class="image-placeholder holiday-bg">
+                            <span class="placeholder-text">Holiday Party Sample</span>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-icon">🎄</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Holiday Parties</h3>
+                        <p>Capture the magic of the season with festive decorations that embody the spirit of celebration. From Christmas elegance to New Year's glamour, we create holiday atmospheres that warm hearts.</p>
+                        <div class="event-features">
+                            <span>• Seasonal Themes</span>
+                            <span>• Lighting Effects</span>
+                            <span>• Traditional Elements</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-portfolio-card">
+                    <div class="event-image">
+                        <div class="image-placeholder custom-bg">
+                            <span class="placeholder-text">Custom Event Sample</span>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-icon">✨</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Custom Events</h3>
+                        <p>Have a unique vision? We specialize in bringing extraordinary ideas to life. From themed parties to milestone celebrations, we create one-of-a-kind experiences tailored to your specific dreams and requirements.</p>
+                        <div class="event-features">
+                            <span>• Custom Themes</span>
+                            <span>• Unique Installations</span>
+                            <span>• Personalized Details</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#contact" class="cta-button">Start Planning Your Event</a>
+                <a href="#" class="cta-button secondary" style="margin-left: 20px;">View Full Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Complete event decor solutions tailored to your needs</p>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">🎨</div>
+                    <h3>Full Event Design</h3>
+                    <p>Complete conceptualization and execution of your event's visual theme</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">💡</div>
+                    <h3>Partial Styling</h3>
+                    <p>Enhance your existing setup with our expert styling touches</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🏺</div>
+                    <h3>Rental Coordination</h3>
+                    <p>Access to premium decor items and seamless rental management</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">⚡</div>
+                    <h3>Day-of Setup</h3>
+                    <p>Professional installation and breakdown services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Ready to Start Planning?</h2>
+            <p class="section-subtitle">Tell us about your event and let's create something magical together</p>
+            
+            <form class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Event Type</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="birthday">Birthday Party</option>
+                            <option value="baby-shower">Baby Shower</option>
+                            <option value="holiday">Holiday Party</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="date" placeholder="Event Date">
+                </div>
+                
+                <div class="form-group">
+                    <textarea placeholder="Tell us about your vision, guest count, venue, and any special requirements..." rows="5"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Elegant Events Decor. Creating beautiful moments since 2015.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! We\'ll get back to you within 24 hours.');
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#fff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
 </html>
